@@ -107,7 +107,6 @@ package test {
 		[Test]
 		public function subtract():void {
 			var nv:Vector2D = new Vector2D( 0, 0 );
-
 			var rv:Vector2D = nv.add( new Vector2D( -1, -2 ) );
 
 			Assert.assertTrue( "Result vector x property is -1", rv.x == -1 );
