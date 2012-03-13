@@ -29,7 +29,7 @@ package {
 			// You can also pass a Request Object, which allows you to sort, filter and subselect.
 			// var request:Request = Request.methods( someClass, ["method1", "method2", "method3"] ).sortWith( someSorter ).filterWith( someFilter );
 			// core.run( request );
-			core.run( Vector2DTest );
+			core.run( Vector2DTest, VectorComparison );
 			
 		}
 	}
