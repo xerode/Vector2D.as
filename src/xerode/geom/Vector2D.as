@@ -87,6 +87,20 @@ package xerode.geom {
 				
 			}
 			
+			/**
+			 * Determines whether two Vector2D objects are equal by comparing the x and y elements of the current Vector2D object with a specified Vector2D object.
+			 * @param	nv
+			 * @return
+			 */
+			public function nearEquals( nv:Vector2D, tolerance:Number ):Boolean {
+				
+				var nx:Number = Math.abs( nv.x - this.x );
+				var ny:Number = Math.abs( nv.y - this.y );
+				
+				return ( nx < tolerance && ny < tolerance );
+				
+			}
+			
 			// nearEquals
 			
 			/**

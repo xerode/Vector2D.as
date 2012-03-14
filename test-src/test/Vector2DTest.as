@@ -66,6 +66,14 @@ package test {
 			Assert.assertTrue( "Result vector x property is 0", nv.x == 11 );
 			Assert.assertTrue( "Result vector y property is 0", nv.y == 22 );
 		}
+		
+		[Test]
+		public function nearEquals():void {
+			var nv:Vector2D = new Vector2D( 4, 4 );
+			var cv:Vector2D = new Vector2D( 3, 3 );
+
+			Assert.assertTrue( "Two new Vector2Ds are nearEqual", nv.nearEquals( cv, 2 ) );
+		}
 
 		[Test]
 		public function negate():void {
