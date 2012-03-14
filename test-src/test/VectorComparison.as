@@ -45,6 +45,18 @@ package test {
 		}
 		
 		[Test]
+		public function nearEquals():void {
+			var v2d:Vector2D = new Vector2D( 9, 9 );
+			var v3d:Vector3D = new Vector3D( 9, 9, 0 );
+			
+			var c2d:Vector2D = new Vector2D( 10, 10 );
+			var c3d:Vector3D = new Vector3D( 10, 10, 0 );
+
+			Assert.assertTrue( "v2d.nearEquals( c2d, 1 ) == v3d.nearEquals( c3d, 1 )", v2d.nearEquals( c2d, 1 ) == v3d.nearEquals( c3d, 1 ) );
+			Assert.assertTrue( "v2d.nearEquals( c2d, 0.5 ) == v3d.nearEquals( c3d, 0.5 )", v2d.nearEquals( c2d, 0.5 ) == v3d.nearEquals( c3d, 0.5 ) );
+		}
+		
+		[Test]
 		public function negate():void {
 			var v2d:Vector2D = new Vector2D( 4, 4 );
 			var v3d:Vector3D = new Vector3D( 4, 4, 0 );

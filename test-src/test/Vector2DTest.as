@@ -69,8 +69,8 @@ package test {
 		
 		[Test]
 		public function nearEquals():void {
-			var nv:Vector2D = new Vector2D( 4, 4 );
-			var cv:Vector2D = new Vector2D( 3, 3 );
+			var nv:Vector2D = new Vector2D( 10, 10 );
+			var cv:Vector2D = new Vector2D( 9, 9 );
 
 			Assert.assertTrue( "Two new Vector2Ds are nearEqual", nv.nearEquals( cv, 2 ) );
 		}
