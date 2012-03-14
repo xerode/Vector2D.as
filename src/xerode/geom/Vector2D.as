@@ -94,14 +94,12 @@ package xerode.geom {
 			 */
 			public function nearEquals( nv:Vector2D, tolerance:Number ):Boolean {
 				
-				var nx:Number = Math.abs( nv.x - this.x );
-				var ny:Number = Math.abs( nv.y - this.y );
+				var dx:Number = this.x - nv.x;
+				var dy:Number = this.y - nv.y;
 				
-				return ( nx < tolerance && ny < tolerance );
+				return ( dx * dx + dy * dy ) <= tolerance * tolerance;
 				
 			}
-			
-			// nearEquals
 			
 			/**
 			 * Sets the current Vector2D object to its inverse.
