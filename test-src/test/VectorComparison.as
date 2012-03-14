@@ -68,8 +68,16 @@ package test {
 			Assert.assertTrue( "v2d.y == v3d.y", v2d.y == v3d.y );
 		}
 		
-		/*
-		// Flash Player 11 only - need to upgrade SDK and change project properties
+		[Test]
+		public function normalize():void {
+			var v2d:Vector2D = new Vector2D( 4, 4 );
+			var v3d:Vector3D = new Vector3D( 4, 4, 0 );
+
+			Assert.assertTrue( "v2d.length == v3d.length", v2d.normalize() == v3d.normalize() );
+			Assert.assertTrue( "v2d.x == v3d.x", v2d.x == v3d.x );
+			Assert.assertTrue( "v2d.y == v3d.y", v2d.y == v3d.y );
+		}
+		
 		[Test]
 		public function setTo():void {
 			var v2d:Vector2D = new Vector2D( 4, 4 );
@@ -81,7 +89,6 @@ package test {
 			Assert.assertTrue( "v2d.x == v3d.x", v2d.x == v3d.x );
 			Assert.assertTrue( "v2d.y == v3d.y", v2d.y == v3d.y );
 		}
-		*/
 		
 		[Test]
 		public function subtract():void {

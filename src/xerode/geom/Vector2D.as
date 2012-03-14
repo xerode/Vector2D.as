@@ -109,7 +109,20 @@ package xerode.geom {
 				this.y *= -1;
 			}
 			
-			// normalize
+			/**
+			 * Converts a Vector2D object to a unit vector by dividing x and y by the length of the vector
+			 * @return The length of the current Vector2D object
+			 */
+			public function normalize():Number {
+				
+				var l:Number = this.length;
+				
+				this.x /= l;
+				this.y /= l;
+				
+				return l;
+				
+			}
 			
 			// project
 			
@@ -132,6 +145,10 @@ package xerode.geom {
 				this.y = ny;
 			}
 			
+			/**
+			 * Returns a string representation of the current Vector2D object. The string contains the values of the x and y properties.
+			 * @return		A string containing the values of the x and y properties.
+			 */
 			public function toString():String {
 				return "Vector2D(" + this.x + ", " + this.y + ")";
 			}
