@@ -53,8 +53,14 @@ package xerode.geom {
 				this.y = nv.y;
 			}
 			
-			// 2D crossProduct?
-			// http://www.gamedev.net/topic/289972-cross-product-of-2d-vectors/
+			/**
+			 * Calculates the cross product of this vector and another given vector.
+			 * @param v2 Another Vector2D instance.
+			 * @return Number The cross product of this vector and the one passed in as a parameter.
+			 */
+			public function crossProduct( v2:Vector2D ):Number {
+				return _x * v2.y - _y * v2.x;
+			}
 			
 			/**
 			 * Decrements the value of the x and y elements of the current Vector2D object by the values of the x and y elements of specified Vector2D object.
@@ -161,6 +167,84 @@ package xerode.geom {
 			public function subtract( nv:Vector2D ):Vector2D {
 				return new Vector2D( this.x - nv.x, this.y - nv.y );
 			}
+			
+		/*
+		 * ADDITIONAL METHODS
+		 * When compared ot Vector3D, anyway
+		*/
+		
+			/**
+			 * Sets this vector's x and y values, and thus length, to zero.
+			 * @return Vector2D A reference to this vector.
+			 */
+			public function zero():Vector2D {
+				this.x = 0;
+				this.y = 0;
+				return this;
+			}
+			
+			/**
+			 * Whether or not this vector is equal to zero, i.e. its x, y, and length are zero.
+			 * @return Boolean True if vector is zero, otherwise false.
+			 */
+			public function isZero():Boolean {
+				return this.x == 0 && this.y == 0;
+			}
+			
+			/**
+			 * Ensures the length of the vector is no longer than the given value.
+			 * @param max The maximum value this vector should be. If length is larger than max, it will be truncated to this value.
+			 * @return Vector2D A reference to this vector.
+			 */
+			public function truncate( max:Number ):Vector2D {
+				this.length = Math.min( max, this.length );
+				return this;
+			}
+			
+			/**
+			 * Whether or not this vector is normalized, i.e. its length is equal to one.
+			 * @return Boolean True if length is one, otherwise false.
+			 */
+			public function isNormalized():Boolean {
+				return this.lengthSquared == 1.0;
+			}
+			
+			/**
+			 * Calculates the dot product of this vector and another given vector.
+			 * @param v2 Another Vector2D instance.
+			 * @return Number The dot product of this vector and the one passed in as a parameter.
+			 */
+			public function dotProduct( v2:Vector2D ):Number {
+				return this.x * v2.x + this.y * v2.y;
+			}
+			
+			/**
+			 * Determines if a given vector is to the right or left of this vector.
+			 * @return int If to the left, returns -1. If to the right, +1.
+			 */
+			public function sign( v2:Vector2D ):int {
+				return this.perp.dotProduct( v2 ) < 0 ? -1 : 1;
+			}
+
+			/**
+			 * Calculates the distance from this vector to another given vector.
+			 * @param v2 A Vector2D instance.
+			 * @return Number The distance from this vector to the vector passed as a parameter.
+			 */
+			public function dist( v2:Vector2D ):Number {
+				return Math.sqrt( this.distSQ( v2 ) );
+			}
+
+			/**
+			 * Calculates the distance squared from this vector to another given vector.
+			 * @param v2 A Vector2D instance.
+			 * @return Number The distance squared from this vector to the vector passed as a parameter.
+			 */
+			public function distSQ( v2:Vector2D ):Number {
+				var dx:Number = v2.x - this.x;
+				var dy:Number = v2.y - this.y;
+				return dx * dx + dy * dy;
+			}
 
 		/*
 		 * PROPERTY ACCESSORS/MUTATORS
@@ -181,6 +265,15 @@ package xerode.geom {
 				_y = y;
 			}
 			
+			/**
+			 * Sets / gets the length or magnitude of this vector. Changing the length will change the x and y but not the angle of this vector.
+			 */
+			public function set length( value:Number ):void {
+				var a:Number = angle;
+				_x = Math.cos( a ) * value;
+				_y = Math.sin( a ) * value;
+			}
+			
 			public function get length():Number {
 				
 				return Math.sqrt( this.lengthSquared );
@@ -191,6 +284,27 @@ package xerode.geom {
 			
 				return this.x * this.x + this.y * this.y;
 				
+			}
+			
+			/**
+			 * Gets / sets the angle of this vector. Changing the angle changes the x and y but retains the same length.
+			 */
+			public function set angle( value:Number ):void {
+				var len:Number = length;
+				_x = Math.cos( value ) * len;
+				_y = Math.sin( value ) * len;
+			}
+
+			public function get angle():Number {
+				return Math.atan2( _y, _x );
+			}
+			
+			/**
+			 * Finds a vector that is perpendicular to this vector.
+			 * @return Vector2D A vector that is perpendicular to this vector.
+			 */
+			public function get perp():Vector2D {
+				return new Vector2D( -this.y, this.x );
 			}
 		
 	}

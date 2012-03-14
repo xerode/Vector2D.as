@@ -135,5 +135,75 @@ package test {
 			Assert.assertTrue( "Result length property is 25", nv.lengthSquared == 25 );
 		}
 		
+		[Test]
+		public function zero():void {
+			var nv:Vector2D = new Vector2D( 10, 10 );
+			
+			nv.zero();
+			
+			Assert.assertTrue( "x and y are both 0", ( nv.x == 0 && nv.y == 0 ) );
+		}
+		
+		[Test]
+		public function isZero():void {
+			var nv:Vector2D = new Vector2D( 0, 0 );
+			
+			Assert.assertTrue( "x and y are both 0", nv.isZero() );
+			
+			nv = new Vector2D( 4, 4 );
+			
+			Assert.assertFalse( "x and y are both not 0", nv.isZero() );
+		}
+		
+		[Test]
+		public function truncate():void {
+			var nv:Vector2D = new Vector2D( 8, 8 );
+			
+			nv.truncate( 2 );
+			
+			Assert.assertTrue( "length is 2", nv.length == 2 );
+			
+		}
+		
+		[Test]
+		public function isNormalized():void {
+			var nv:Vector2D = new Vector2D( 8, 8 );
+			
+			nv.truncate( 1 );
+			
+			Assert.assertTrue( "length is 1", nv.length == 1 );
+			
+		}
+		
+		[Test]
+		public function sign():void {
+			var nv:Vector2D = new Vector2D( 8, 8 );
+			var cv1:Vector2D = new Vector2D( 10, 10 );
+			
+			Assert.assertTrue( "cv1 is to the right of nv", nv.sign( cv1 ) == 1 );
+			
+			/*
+			var cv2:Vector2D = new Vector2D( 7, 8 );
+			
+			Assert.assertTrue( "cv2 is to the left of nv", nv.sign( cv2 ) == -1 );
+			*/
+		}
+		
+		[Test]
+		public function dist():void {
+			var nv:Vector2D = new Vector2D( 0, 0 );
+			var cv:Vector2D = new Vector2D( 3, 4 );
+			
+			Assert.assertTrue( "Distance is 5", nv.dist( cv ) == 5 );
+		}
+		
+		[Test]
+		public function distSQ():void {
+			var nv:Vector2D = new Vector2D( 0, 0 );
+			var cv:Vector2D = new Vector2D( 3, 4 );
+			
+			Assert.assertTrue( "Distance is 25", nv.distSQ( cv ) == 25 );
+		}
+		
 	}
 }
