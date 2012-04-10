@@ -263,6 +263,7 @@ package xerode.geom {
 	
 			public function set y( y:Number ):void {
 				_y = y;
+				
 			}
 			
 			/**
