@@ -1,6 +1,5 @@
 ﻿package 
 {
-	import flash.geom.Vector3D;
 	import flash.display.Sprite;
 
 	import xerode.geom.Vector2D;
